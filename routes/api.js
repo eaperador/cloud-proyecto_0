@@ -102,7 +102,8 @@ router.post('/login', (req, res) => {
     } else {
         res.json({
             login: false,
-            datos: usuario
+            datos: usuario,
+            error: req
         });
     } 
 });
