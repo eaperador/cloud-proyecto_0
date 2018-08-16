@@ -1,0 +1,116 @@
+<div class="card">
+  <div class="card-header row">
+    <h3 class="offset-1 col-md-3">
+      {{usuario.usuario}}
+    </h3>
+    <nav class="offset-7 col-md-1">
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </nav>
+  </div>
+  <div class="card-body">
+    <table class="table table-dark">
+      <thead>
+        <th>
+          Nombre
+        </th>
+        <th>
+          Categoria
+        </th>
+        <th>
+          Lugar
+        </th>
+        <th>
+          Direcci&oacute;n
+        </th>
+        <th>
+          Fecha Inicio
+        </th>
+        <th>
+          Fecha Final
+        </th>
+        <th>
+          Es presencial
+        </th>
+        <th>
+          Acciones
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let evento of eventos">
+          <td>
+            {{evento.nombre}}
+          </td>
+          <td>
+            {{evento.categoria}}
+          </td>
+          <td>
+            {{evento.lugar}}
+          </td>
+          <td>
+            {{evento.direccion}}
+          </td>
+          <td>
+            {{traducirFecha(evento.fechaInicio)}}
+          </td>
+          <td>
+            {{traducirFecha(evento.fechaFin)}}
+          </td>
+          <td>
+            <span *ngIf="evento.presencial">
+              Si
+            </span>
+            <span *ngIf="!evento.presencial">
+              No
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="borrarEvento(evento._id)">
+              Borrar
+            </button>
+            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modal" (click)="actualizarEvento(evento)">
+              Actualizar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-12 text-center">
+    <button class="col-md-1" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+      <span>
+        Crear nuevo evento
+      </span>
+    </button>
+  </div>
+</div>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Evento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Nombre</label>
+        <input class="form-control" type="text" placeholder="Nombre" [(ngModel)]="nombreEvento">
+        <label>Categoria</label>
+        <input class="form-control" type="text" placeholder="Categoria" [(ngModel)]="categoriaEvento">
+        <label>Lugar</label>
+        <input class="form-control" type="text" placeholder="Lugar" [(ngModel)]="lugarEvento">
+        <label>Direcci&oacute;n</label>
+        <input type="text" class="form-control" placeholder="Direccion" [(ngModel)]="direccionEvento">
+        <label>Fecha Inicio</label>
+        <input type="date" class="form-control" placeholder="Fecha Inicio" [(ngModel)]="fechaInicialEvento">
+        <label>Fecha Fin</label>
+        <input type="date" placeholder="Fecha Final" class="form-control" [(ngModel)]="fechaFinalEvento">
+        <label for="presencial">Presencial</label>
+        <input type="checkbox" id="presencial" placeholder="Presencial" class="form-control" [(ngModel)]="esPresencialEvento">
+      </div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-primary" value="Crear" (click)="sendEvent()" />
+      </div>
+    </div>
+  </div>
+</div>
