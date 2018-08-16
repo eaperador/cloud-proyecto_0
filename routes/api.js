@@ -99,7 +99,12 @@ router.post('/login', (req, res) => {
                 });
             }
         });
-    }
+    } else {
+        res.json({
+            login: false,
+            datos: usuario
+        });
+    } 
 });
 
 module.exports = router;
