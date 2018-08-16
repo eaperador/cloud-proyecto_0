@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   password: String;
   error: Boolean = false;
   mostrarModal: Boolean = false;
+  recordarUsuario: Boolean = false;
+  
   registro: any = {
     usuario: "",
     nombre: "",
@@ -29,6 +31,13 @@ export class LoginComponent implements OnInit {
     headers.append("Cache-Control", "no-cache");
     headers.append("Cache-Control", "no-store");
     this.options = new RequestOptions({ headers: headers });
+    let recordarUser:any = localStorage.getItem('recordarUsuario');
+    if(recordarUser) {
+      recordarUser = JSON.parse(recordarUser);
+      this.usuario = recordarUser.usuario;
+      this.password = recordarUser.password;
+      this.recordarUsuario = true;
+    }
   }
 
   ngOnInit() {
@@ -61,6 +70,11 @@ export class LoginComponent implements OnInit {
       if((<any>response).login) {
         this.error = false;
         localStorage.setItem('usuario', JSON.stringify((<any>response).user));
+        if(this.recordarUsuario) {
+	  localStorage.setItem('recordarUsuario', JSON.stringify({usuario:this.usuario, password: this.password}));
+	} else {
+	  localStorage.removeItem('recordarUsuario');
+	}
         window.location.href = '#/home';
       } else {
         this.error = true;
@@ -76,7 +90,7 @@ export class LoginComponent implements OnInit {
       usuario: this.usuario,
       password: this.password
     };
-    return this.http.post('/api/login', body, this.options).map(response => <String[]> response.json());
+    return this.http.post('/api/login', JSON.stringify(body), this.options).map(response => <String[]> response.json());
   }
 
 }

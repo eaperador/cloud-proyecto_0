@@ -29,6 +29,11 @@ router.post('/eventos/:usuario', (req, res) => {
             }
             res.json(evento);
         });
+    } else {
+      res.json({
+        evento: false,
+	body: body	
+      });
     }
 });
 
@@ -102,8 +107,7 @@ router.post('/login', (req, res) => {
     } else {
         res.json({
             login: false,
-            datos: usuario,
-            error: req
+            datos: usuario
         });
     } 
 });

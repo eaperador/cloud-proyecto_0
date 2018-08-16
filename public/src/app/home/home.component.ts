@@ -14,9 +14,15 @@ export class HomeComponent implements OnInit {
   error: String = null;
   mostrarModal: Boolean = false;
   usuario: any = null;
+  categorias: any = [
+     "Conferencia",  
+     "Seminario",  
+     "Congreso", 
+     "Curso"
+  ];
 
   nombreEvento: String = "";
-  categoriaEvento: String = "";
+  categoriaEvento: String = "Conferencia";
   lugarEvento: String = "";
   direccionEvento: String = "";
   fechaInicialEvento: Date = new Date();
@@ -73,8 +79,9 @@ export class HomeComponent implements OnInit {
 
     this.callSendEvent(event).subscribe(response => {
       this.getEvents();
-      this.mostrarModal = false;
       this.resetModal();
+      let $ = (<any>window).$;
+      $('#modal').modal('toggle');
     });
   }
 
@@ -117,12 +124,12 @@ export class HomeComponent implements OnInit {
       window.location.href = '#/login';
     }
     if(!this._actualizar) {
-      return this.http.post('/api/eventos/' + this.usuario.user, event, this.options).map(response => <String[]> response.json());
+      return this.http.post('/api/eventos/' + this.usuario.usuario, JSON.stringify(event), this.options).map(response => <String[]> response.json());
     } else {
       this._actualizar = false;
       console.log(event);
       console.log("PUTTINGEVENT");
-      return this.http.put('/api/eventos/' + this._id, event, this.options).map(response => <String[]> response.json());
+      return this.http.put('/api/eventos/' + this._id, JSON.stringify(event), this.options).map(response => <String[]> response.json());
     }
   }
 

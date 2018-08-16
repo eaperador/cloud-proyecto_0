@@ -131,7 +131,7 @@ AppModule = __decorate([
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-header row\">\n    <h3 class=\"offset-1 col-md-3\">\n      {{usuario.usuario}}\n    </h3>\n    <nav class=\"offset-7 col-md-1\">\n      <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\n    </nav>\n  </div>\n  <div class=\"card-body\">\n    <table class=\"table table-dark\">\n      <thead>\n        <th>\n          Nombre\n        </th>\n        <th>\n          Categoria\n        </th>\n        <th>\n          Lugar\n        </th>\n        <th>\n          Direcci&oacute;n\n        </th>\n        <th>\n          Fecha Inicio\n        </th>\n        <th>\n          Fecha Final\n        </th>\n        <th>\n          Es presencial\n        </th>\n        <th>\n          Acciones\n        </th>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let evento of eventos\">\n          <td>\n            {{evento.nombre}}\n          </td>\n          <td>\n            {{evento.categoria}}\n          </td>\n          <td>\n            {{evento.lugar}}\n          </td>\n          <td>\n            {{evento.direccion}}\n          </td>\n          <td>\n            {{traducirFecha(evento.fechaInicio)}}\n          </td>\n          <td>\n            {{traducirFecha(evento.fechaFin)}}\n          </td>\n          <td>\n            <span *ngIf=\"evento.presencial\">\n              Si\n            </span>\n            <span *ngIf=\"!evento.presencial\">\n              No\n            </span>\n          </td>\n          <td>\n            <button class=\"btn btn-danger\" (click)=\"borrarEvento(evento._id)\">\n              Borrar\n            </button>\n            <button class=\"btn btn-success\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal\" (click)=\"actualizarEvento(evento)\">\n              Actualizar\n            </button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-md-12 text-center\">\n    <button class=\"col-md-1\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#modal\">\n      <span>\n        Crear nuevo evento\n      </span>\n    </button>\n  </div>\n</div>\n<div class=\"modal fade\" id=\"modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\">Evento</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <label>Nombre</label>\n        <input class=\"form-control\" type=\"text\" placeholder=\"Nombre\" [(ngModel)]=\"nombreEvento\">\n        <label>Categoria</label>\n        <input class=\"form-control\" type=\"text\" placeholder=\"Categoria\" [(ngModel)]=\"categoriaEvento\">\n        <label>Lugar</label>\n        <input class=\"form-control\" type=\"text\" placeholder=\"Lugar\" [(ngModel)]=\"lugarEvento\">\n        <label>Direcci&oacute;n</label>\n        <input type=\"text\" class=\"form-control\" placeholder=\"Direccion\" [(ngModel)]=\"direccionEvento\">\n        <label>Fecha Inicio</label>\n        <input type=\"date\" class=\"form-control\" placeholder=\"Fecha Inicio\" [(ngModel)]=\"fechaInicialEvento\">\n        <label>Fecha Fin</label>\n        <input type=\"date\" placeholder=\"Fecha Final\" class=\"form-control\" [(ngModel)]=\"fechaFinalEvento\">\n        <label for=\"presencial\">Presencial</label>\n        <input type=\"checkbox\" id=\"presencial\" placeholder=\"Presencial\" class=\"form-control\" [(ngModel)]=\"esPresencialEvento\">\n      </div>\n      <div class=\"modal-footer\">\n        <input type=\"button\" class=\"btn btn-primary\" value=\"Crear\" (click)=\"sendEvent()\" />\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\n  <div class=\"card-header row\">\n    <h3 class=\"offset-1 col-md-3\">\n      {{usuario.usuario}}\n    </h3>\n    <nav class=\"offset-7 col-md-1\">\n      <button class=\"btn btn-danger\" (click)=\"logout()\">Logout</button>\n    </nav>\n  </div>\n  <div class=\"card-body\">\n    <table class=\"table table-dark\">\n      <thead>\n        <th>\n          Nombre\n        </th>\n        <th>\n          Categoria\n        </th>\n        <th>\n          Lugar\n        </th>\n        <th>\n          Direcci&oacute;n\n        </th>\n        <th>\n          Fecha Inicio\n        </th>\n        <th>\n          Fecha Final\n        </th>\n        <th>\n          Es presencial\n        </th>\n        <th>\n          Acciones\n        </th>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let evento of eventos\">\n          <td>\n            {{evento.nombre}}\n          </td>\n          <td>\n            {{evento.categoria}}\n          </td>\n          <td>\n            {{evento.lugar}}\n          </td>\n          <td>\n            {{evento.direccion}}\n          </td>\n          <td>\n            {{traducirFecha(evento.fechaInicio)}}\n          </td>\n          <td>\n            {{traducirFecha(evento.fechaFin)}}\n          </td>\n          <td>\n            <span *ngIf=\"evento.presencial\">\n              Si\n            </span>\n            <span *ngIf=\"!evento.presencial\">\n              No\n            </span>\n          </td>\n          <td>\n            <button class=\"btn btn-danger\" (click)=\"borrarEvento(evento._id)\">\n              Borrar\n            </button>\n            <button class=\"btn btn-success\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal\" (click)=\"actualizarEvento(evento)\">\n              Actualizar\n            </button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-md-12 text-center\">\n    <button class=\"col-md-1\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#modal\">\n      <span>\n        Crear nuevo evento\n      </span>\n    </button>\n  </div>\n</div>\n<div class=\"modal fade\" id=\"modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\">Evento</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <label>Nombre</label>\n        <input class=\"form-control\" type=\"text\" placeholder=\"Nombre\" [(ngModel)]=\"nombreEvento\">\n        <label>Categoria</label>\n        <select class=\"form-control\" [(ngModel)]=\"categoriaEvento\">\n\t   <option *ngFor=\"let categoria of categorias\" value=\"{{categoria}}\">{{categoria}}</option>\n\t</select>\n        <label>Lugar</label>\n        <input class=\"form-control\" type=\"text\" placeholder=\"Lugar\" [(ngModel)]=\"lugarEvento\">\n        <label>Direcci&oacute;n</label>\n        <input type=\"text\" class=\"form-control\" placeholder=\"Direccion\" [(ngModel)]=\"direccionEvento\">\n        <label>Fecha Inicio</label>\n        <input type=\"date\" class=\"form-control\" placeholder=\"Fecha Inicio\" [(ngModel)]=\"fechaInicialEvento\">\n        <label>Fecha Fin</label>\n        <input type=\"date\" placeholder=\"Fecha Final\" class=\"form-control\" [(ngModel)]=\"fechaFinalEvento\">\n        <label for=\"presencial\">Presencial</label>\n        <input type=\"checkbox\" id=\"presencial\" placeholder=\"Presencial\" class=\"form-control\" [(ngModel)]=\"esPresencialEvento\">\n      </div>\n      <div class=\"modal-footer\">\n        <input type=\"button\" class=\"btn btn-primary\" value=\"Crear\" (click)=\"sendEvent()\" />\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -181,8 +181,14 @@ var HomeComponent = (function () {
         this.error = null;
         this.mostrarModal = false;
         this.usuario = null;
+        this.categorias = [
+            "Conferencia",
+            "Seminario",
+            "Congreso",
+            "Curso"
+        ];
         this.nombreEvento = "";
-        this.categoriaEvento = "";
+        this.categoriaEvento = "Conferencia";
         this.lugarEvento = "";
         this.direccionEvento = "";
         this.fechaInicialEvento = new Date();
@@ -232,8 +238,9 @@ var HomeComponent = (function () {
         };
         this.callSendEvent(event).subscribe(function (response) {
             _this.getEvents();
-            _this.mostrarModal = false;
             _this.resetModal();
+            var $ = window.$;
+            $('#modal').modal('toggle');
         });
     };
     HomeComponent.prototype.borrarEvento = function (_id) {
@@ -272,13 +279,13 @@ var HomeComponent = (function () {
             window.location.href = '#/login';
         }
         if (!this._actualizar) {
-            return this.http.post('/api/eventos/' + this.usuario.user, event, this.options).map(function (response) { return response.json(); });
+            return this.http.post('/api/eventos/' + this.usuario.usuario, JSON.stringify(event), this.options).map(function (response) { return response.json(); });
         }
         else {
             this._actualizar = false;
             console.log(event);
             console.log("PUTTINGEVENT");
-            return this.http.put('/api/eventos/' + this._id, event, this.options).map(function (response) { return response.json(); });
+            return this.http.put('/api/eventos/' + this._id, JSON.stringify(event), this.options).map(function (response) { return response.json(); });
         }
     };
     HomeComponent.prototype.callEvents = function () {
@@ -355,6 +362,7 @@ var LoginComponent = (function () {
         this.http = http;
         this.error = false;
         this.mostrarModal = false;
+        this.recordarUsuario = false;
         this.registro = {
             usuario: "",
             nombre: "",
@@ -367,6 +375,13 @@ var LoginComponent = (function () {
         headers.append("Cache-Control", "no-cache");
         headers.append("Cache-Control", "no-store");
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var recordarUser = localStorage.getItem('recordarUsuario');
+        if (recordarUser) {
+            recordarUser = JSON.parse(recordarUser);
+            this.usuario = recordarUser.usuario;
+            this.password = recordarUser.password;
+            this.recordarUsuario = true;
+        }
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -396,6 +411,12 @@ var LoginComponent = (function () {
             if (response.login) {
                 _this.error = false;
                 localStorage.setItem('usuario', JSON.stringify(response.user));
+                if (_this.recordarUsuario) {
+                    localStorage.setItem('recordarUsuario', JSON.stringify({ usuario: _this.usuario, password: _this.password }));
+                }
+                else {
+                    localStorage.removeItem('recordarUsuario');
+                }
                 window.location.href = '#/home';
             }
             else {
@@ -411,7 +432,7 @@ var LoginComponent = (function () {
             usuario: this.usuario,
             password: this.password
         };
-        return this.http.post('/api/login', body, this.options).map(function (response) { return response.json(); });
+        return this.http.post('/api/login', JSON.stringify(body), this.options).map(function (response) { return response.json(); });
     };
     return LoginComponent;
 }());

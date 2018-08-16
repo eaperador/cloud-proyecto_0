@@ -96,7 +96,9 @@
         <label>Nombre</label>
         <input class="form-control" type="text" placeholder="Nombre" [(ngModel)]="nombreEvento">
         <label>Categoria</label>
-        <input class="form-control" type="text" placeholder="Categoria" [(ngModel)]="categoriaEvento">
+        <select class="form-control" [(ngModel)]="categoriaEvento">
+	   <option *ngFor="let categoria of categorias" value="{{categoria}}">{{categoria}}</option>
+	</select>
         <label>Lugar</label>
         <input class="form-control" type="text" placeholder="Lugar" [(ngModel)]="lugarEvento">
         <label>Direcci&oacute;n</label>
