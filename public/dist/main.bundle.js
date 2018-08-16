@@ -401,6 +401,9 @@ var LoginComponent = (function () {
             else {
                 _this.error = true;
             }
+        }, function (error) {
+            alert("ocurrio un error");
+            console.log(error);
         });
     };
     LoginComponent.prototype.ingresarService = function () {

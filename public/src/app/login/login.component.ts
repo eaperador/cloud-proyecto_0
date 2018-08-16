@@ -65,6 +65,9 @@ export class LoginComponent implements OnInit {
       } else {
         this.error = true;
       }
+    }, error => {
+      alert("ocurrio un error");
+      console.log(error);
     });
   }
 
